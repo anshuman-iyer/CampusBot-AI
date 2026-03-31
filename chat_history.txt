@@ -1,0 +1,60 @@
+You: Anshuman
+Bot: Good evening anshuman. How can I help you?
+You: hi
+Bot: Hello
+You: hi
+Bot: Hello
+You: how do you help me ?
+Bot: Sorry, I did not understand. Type help.
+You: sanshuman
+Bot: Good evening sanshuman. How can I help you?
+You: what do I do ?
+Bot: Sorry, I did not understand. Type help.
+You: help
+Bot: I can help with:
+- Fees
+- Hostel
+- Library
+- Exam
+- Placement
+- Admission
+You can also ask for contact or timings.
+You: how do you help me
+Bot: I can help with:
+- Fees
+- Hostel
+- Library
+- Exam
+- Placement
+- Admission
+You can also ask for contact or timings.
+You: anshuman
+Bot: Good evening anshuman. How can I help you?
+You: what do you do ?
+Bot: I can help with:
+- Fees
+- Hostel
+- Library
+- Exam
+- Placement
+- Admission
+You can also ask for contact or timings.
+You: hi
+Bot: Hello. How can I help you?
+You: hi
+Bot: Hello. How can I help you?
+You: help me
+Bot: I can help with:
+- Fees
+- Hostel
+- Library
+- Exam
+- Placement
+- Admission
+You can also ask for contact or timings.
+You: how do I set timings
+Bot: College timing is 9 AM to 5 PM.
+You: contact
+Bot: Contact: 9876543210 | email: info@college.edu
+You: thanks
+Bot: You're welcome.
