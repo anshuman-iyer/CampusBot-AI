@@ -1,0 +1,32 @@
+{
+  "fees": [
+    "The fee is ₹100000 per semester.",
+    "Semester fee is ₹100000.",
+    "You need to pay ₹100000 each semester."
+  ],
+  "hostel": [
+    "Hostels are available.",
+    "Hostel facility is available for students.",
+    "Accommodation is provided in campus hostel."
+  ],
+  "library": [
+    "Library is open from 8 AM to 8 PM.",
+    "Students can access the library all day.",
+    "Library timing is 8 AM to 8 PM."
+  ],
+  "exam": [
+    "Exams are conducted every semester.",
+    "You will have exams twice a year.",
+    "Semester exams happen regularly."
+  ],
+  "placement": [
+    "Average placement package is ₹6 LPA.",
+    "Top companies visit campus.",
+    "Placement assistance is provided."
+  ],
+  "admission": [
+    "Admissions are open.",
+    "Apply through the college portal.",
+    "Admission process starts in June."
+  ]
+}
