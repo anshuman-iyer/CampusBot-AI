@@ -2,21 +2,53 @@ import difflib
 import random
 import json
 import re
+import os
 from datetime import datetime
 
 class CampusBot:
 
     def __init__(self):
-        try:
-            with open("knowledge.json", encoding="utf-8") as f:
-                self.responses = json.load(f)
-        except:
-            self.responses = {
-                "fees": ["The fee is ₹100000 per semester."],
-                "hostel": ["Hostels are available."],
-                "library": ["Library is open from 8 AM to 8 PM."],
-                "exam": ["Exams are conducted every semester."]
+
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+        req_dir = os.path.join(base_dir, "Requirements")
+
+        os.makedirs(req_dir, exist_ok=True)
+
+        self.knowledge_path = os.path.join(req_dir, "knowledge.json")
+        self.chatlog_path = os.path.join(req_dir, "chat_history.txt")
+
+        if not os.path.exists(self.knowledge_path):
+            default_data = {
+                "fees": [
+                    "The fee is ₹100000 per semester.",
+                    "Semester fee is ₹100000.",
+                    "You need to pay ₹100000 each semester."
+                ],
+                "hostel": [
+                    "Hostels are available.",
+                    "Accommodation is provided on campus.",
+                    "Hostel facility is available for students."
+                ],
+                "library": [
+                    "Library is open from 8 AM to 8 PM.",
+                    "Students can access the library all day.",
+                    "Library timing is 8 AM to 8 PM."
+                ],
+                "exam": [
+                    "Exams are conducted every semester.",
+                    "You will have exams twice a year.",
+                    "Semester exams happen regularly."
+                ]
             }
+
+            with open(self.knowledge_path, "w", encoding="utf-8") as f:
+                json.dump(default_data, f, indent=2)
+
+        if not os.path.exists(self.chatlog_path):
+            open(self.chatlog_path, "w", encoding="utf-8").close()
+
+        with open(self.knowledge_path, encoding="utf-8") as f:
+            self.responses = json.load(f)
 
         self.keywords = {
             "fees": ["fees","fee","cost","price","tuition"],
@@ -35,8 +67,7 @@ class CampusBot:
             "how do you help me",
             "what do i do",
             "what should i do",
-            "what can i ask",
-            "what are you for"
+            "what can i ask"
         ]
 
         self.small_talk = {
@@ -44,7 +75,6 @@ class CampusBot:
             "hello": "Hi. Ask me anything about the college.",
             "hey": "Hey. What would you like to know?",
             "how are you": "I am working perfectly.",
-            "who made you": "I was created as an AI college assistant.",
             "thanks": "You're welcome.",
             "thank you": "Happy to help."
         }
@@ -58,7 +88,7 @@ class CampusBot:
         return text.strip()
 
     def log_chat(self, user, bot):
-        with open("chat_history.txt","a", encoding="utf-8") as f:
+        with open(self.chatlog_path, "a", encoding="utf-8") as f:
             f.write(f"You: {user}\nBot: {bot}\n")
 
     def greeting(self):
@@ -79,7 +109,6 @@ class CampusBot:
         for phrase in self.help_phrases:
             if phrase in text:
                 return True
-
             score = difflib.SequenceMatcher(None, text, phrase).ratio()
             if score > 0.75:
                 return True
@@ -105,13 +134,6 @@ class CampusBot:
             return best, best_score
 
         return None, best_score
-
-    def suggest(self, text):
-        words = [w for k in self.keywords for w in self.keywords[k]]
-        match = difflib.get_close_matches(text, words, n=1)
-        if match:
-            return f"Did you mean '{match[0]}'?"
-        return None
 
     def help(self):
         return (
@@ -159,10 +181,6 @@ class CampusBot:
         if intent:
             self.last_intent = intent
             return random.choice(self.responses[intent]) + f" (confidence {score:.2f})"
-
-        suggestion = self.suggest(text)
-        if suggestion:
-            return suggestion
 
         return "Sorry, I did not understand. Type help."
 
